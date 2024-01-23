@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mimi's Fishy Game</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+
+        #fish {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            background-color: #f39c12;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        #score {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 20px;
+            color: #2ecc71;
+        }
+
+        .cat {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="fish"></div>
+    <div id="score">Score: 0</div>
+
+    <!-- Cat images -->
+    <img class="cat" src="cat1.jpg" alt="Cat 1" onclick="moveCat(this)">
+    <img class="cat" src="cat2.jpg" alt="Cat 2" onclick="moveCat(this)">
+
+
+    <script>
+        const fish = document.getElementById('fish');
+        const scoreDisplay = document.getElementById('score');
+        let score = 0;
+
+        fish.addEventListener('click', () => {
+            moveFish();
+            increaseScore();
+        });
+
+        function moveFish() {
+            const maxX = window.innerWidth - fish.clientWidth;
+            const maxY = window.innerHeight - fish.clientHeight;
+
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            fish.style.left = `${newX}px`;
+            fish.style.top = `${newY}px`;
+        }
+
+        function increaseScore() {
+            score++;
+            scoreDisplay.textContent = `Score: ${score}`;
+        }
+
+        function moveCat(cat) {
+            const maxX = window.innerWidth - cat.clientWidth;
+            const maxY = window.innerHeight - cat.clientHeight;
+
+            const newX = Math.random() * maxX;
+            const newY = Math.random() * maxY;
+
+            cat.style.left = `${newX}px`;
+            cat.style.top = `${newY}px`;
+        }
+    </script>
+
+</body>
+</html>
